@@ -1,0 +1,571 @@
+1. Inheritance types.
+
+sol)
+
+a) Single Inheritance 
+
+#include<iostream>
+using namespace std;
+
+class Add       
+{
+protected:
+	int num1, num2;
+public:	
+	void accept()
+        {
+         	cout<<"\n Enter num1 : ";
+                cin>>num1;
+                cout<<"\n Enter num2 : ";
+                cin>>num2;
+        }
+};
+class Addition: public Add   
+{
+       int sum;
+       public:
+       void add()
+       {
+        	sum = num1 + num2;
+       }	
+       void display()
+       {
+                cout<<"\n Result of Addition : "<<sum;
+       }	
+};
+int main()
+{
+        Addition a;
+        a.accept();
+        a.add();
+        a.display();
+        return 0;
+}
+
+
+Enter num1 : 10
+Enter num2 : 20
+
+Output:
+Result of Addition : 30 
+b) Multiple Inheritance :
+
+#include<iostream>
+using namespace std;
+
+class A {
+protected:
+    int a;
+public:
+
+    void get1() {
+
+        cout << "a:"<<endl;
+        cin >> a;
+    }
+};
+
+class B {
+public:
+    int b;
+    void get2() {
+
+        cout << "b:"<<endl;
+        cin >> b;
+    }
+
+
+};
+
+class add : public B, public A {
+    int tot ;
+public:
+
+    void display() {
+        tot = (a + b);
+          cout<<"sum: " << tot;
+     }
+};
+
+int main() {
+    add obj;
+    obj.get1();
+    obj.get2();
+    obj.display();
+}
+
+a:10
+b:20
+
+Output:
+sum: 30
+
+c) Multilevel Inheritance 
+#include <iostream>
+using namespace std;
+
+class A
+{
+    public:
+      void display()
+      {
+          cout<<"Baseclass"<<endl;
+      }
+};
+
+class B : public A
+{
+public:
+int a=15;
+};
+
+class C : public B
+{
+ public:
+int b=10;
+};
+
+int main()
+{
+    C obj;
+    int c= obj.a+obj.b;
+    cout<<"sum: "<<c<<endl;    
+    obj.display();
+    return 0;
+}
+
+Output:
+sum: 30
+Baseclass
+
+d) Hybrid Inheritance 
+#include<iostream>
+using namespace std;
+class A{
+    public:
+    
+    int a=5;
+    void fun()
+    {
+    cout<<"Input1:"<<a<<endl;
+    }
+};
+ 
+class B{
+    public:
+    
+    int b=20;
+    void disp()
+    {
+    cout<<"Input2:"<<b<<endl;
+    }
+};
+ 
+class C : public A,public B{
+  A b1;
+  B b2;
+  public:
+  
+  int c=b1.a+b2.b;
+  
+    
+};
+ 
+class D : public C, public 	A{
+ C z;
+  public:
+  
+  void msg(){
+      cout<<"SUM: "<<z.c<<endl;
+  }
+    
+};
+ 
+ 
+ 
+int main(){
+   A b1;
+   B b2;
+   C z;
+   D y;
+   
+   
+   
+   b1.fun();
+   b2.disp();
+   y.msg();
+  
+    
+  return 0;
+}
+
+Output:
+Input1:10
+Input2:20
+SUM: 30
+
+e) Hierarchical Inheritance.
+
+#include<iostream>
+using namespace std;
+class A{
+  public:
+  void fun(){
+    cout<<"A"<<endl;  
+  }  
+};
+ 
+class B : public A{
+    public:
+    void fun1(){
+      cout<<"B"<<endl;      
+    }
+};
+ 
+class C : public A{
+    public:
+    void fun2(){
+        cout<<"C"<<endl;
+    }
+};
+ 
+int main(){
+   
+   A b;
+   b.fun;
+   
+   B d1;
+   d1.fun();
+   d1.fun1();
+   
+   C d2;
+   d2.fun();
+   d2.fun2();
+  return 0;
+}
+
+Output:
+A
+A
+B
+A
+C
+
+2. Protected inheritance 
+sol)
+#include <iostream>
+using namespace std;
+   
+class base {
+protected:
+  int i, j; 
+public:
+  void setij(int a, int b) 
+  { 
+    i=a; 
+    j=b; 
+      
+  }
+  void showij() 
+  {
+     cout<<"\n"; 
+     cout<<"Input1:";
+     cout << i <<endl;
+     cout<<"Input2:";
+     cout << j <<endl;
+  }
+};
+
+
+class Add : protected base{
+  int r;
+public:
+  void sk()
+  {
+    setij(5, 7);
+    r = i+j;
+  }
+  void sall() 
+  {
+    cout<<"Addition  Result:";  
+    cout << r << " ";
+    showij();
+  }
+};
+
+
+class Sub : protected base{
+  int r;
+public:
+  void sk()
+  {
+    setij(7, 5);
+    r = i-j;
+  }
+  void sall() 
+  {
+    cout<<"Subtraction  Result:";  
+    cout << r << " ";
+    showij();
+  }
+};
+
+class Mul : protected base{
+  int k;
+public:
+  void sk()
+  {
+    setij(10, 12);
+    k = i*j;
+  }
+  void sall() 
+  {
+    cout<<"Multiplication Result:";  
+    cout << k << " ";
+    showij();
+  }
+};
+
+
+class Divi : protected base{
+  int r;
+public:
+  void sk()
+  {
+    setij(15, 5);
+    r = i/j;
+  }
+  void sall() 
+  {
+    cout<<"Division Result(Quotient):";  
+    cout << r << " ";
+    showij();
+  }
+};.
+class Modu : protected base{
+  int r;
+public:
+  void sk()
+  {
+    setij(15, 5);
+    r = i%j;
+  }
+  void sall() 
+  {
+    cout<<"Division Result(Remainder):";  
+    cout << r << " ";
+    showij();
+  }
+};
+   
+int main()
+{
+  Add a;
+  Sub s;
+  Mul m;
+  Divi d;
+  Modu mo;
+  
+  a.sk();
+  a.sall();
+  cout<<"\n";
+  s.sk();
+  s.sall();
+  cout<<"\n";
+  m.sk(); 
+  m.sall(); 
+  cout<<"\n";
+  d.sk(); 
+  d.sall();
+  cout<<"\n";
+  mo.sk();
+  mo.sall();
+   
+  return 0;
+}
+
+Output:
+Addition  Result:12 
+Input1:5
+Input2:7
+
+Subtraction  Result:2 
+Input1:7
+Input2:5
+
+Multiplication Result:120 
+Input1:10
+Input2:12
+
+Division Result(Quotient):3 
+Input1:15
+Input2:5
+
+Division Result(Remainder):0 
+Input1:15
+Input2:5
+
+3. Inline concept 
+ 
+sol)
+#include <iostream>
+ 
+using namespace std;
+
+inline int Add(int x, int y) 
+{
+   return (x+y);
+}   
+inline int Sub(int x, int y) 
+{
+   return (x-y);
+}
+inline int Mul(int x, int y) 
+{
+   return (x*y);
+}
+inline int Divi(int x, int y) 
+{
+   return (x/y);
+}
+inline int Modu(int x, int y) 
+{
+   return (x%y);
+}
+
+int main() {
+   cout << "add: " << Add(5,7) << endl;
+   cout << "sub: " << Sub(7,5) << endl;
+   cout << "mul: " << Mul(5,7) << endl;
+   cout << "div: " << Divi(15,5) << endl;
+   cout << "mod: " << Modu(15,5) << endl;
+   
+   
+   
+   return 0;
+}
+
+Output:
+add: 12
+sub: 2
+mul: 35
+div: 3
+mod: 0
+
+4. Friend concept 
+
+sol)
+#include<iostream>
+using namespace std;
+
+class Add
+{
+    public:
+        int x;
+        int y;
+        int z;
+    public:
+        Add(): x(1),y(2),z(1) { }
+       
+        friend int add(Add);
+};
+
+class Sub
+{
+    public:
+        int x;
+        int y;
+        int z;
+    public: 
+    Sub(): x10),y(2),z(1) { }
+     
+    friend int sub(Sub);
+};
+
+class Mul
+{
+    public:
+        int x;
+        int y;
+        int z;
+    public: 
+    Mul(): x(1),y(2),z(1) { }
+    
+    friend int mul(Mul);
+};
+
+class Divi
+{
+    public:
+        int x;
+        int y;
+        int z;
+    public: 
+    Divi(): x(10),y(5),z(0) { }
+    
+    friend int divi(Divi);
+};
+
+class Modu
+{
+    public:
+        int x;
+        int y;
+        int z;
+    public: 
+    Modu(): x(10),y(5),z(0) { }
+    
+    friend int modu(Modu);
+};
+
+int add(Add a)
+{
+   
+    a.z=a.x+a.y;
+    return a.z;
+}
+int sub(Sub s)
+{
+    
+    s.z=s.x-s.y;
+    return s.z;
+}
+int mul(Mul m)
+{
+  
+    m.z=m.x*m.y;
+    return m.z;
+}
+int divi(Divi d)
+{
+    d.z=d.x/d.y;
+    return d.z;
+}
+int modu(Modu mo)
+{
+    
+    mo.z=mo.x%mo.y;
+    return mo.z;
+}
+
+int main()
+{
+    Add a;
+    Sub s;
+    Mul m;
+    Divi d;
+    Modu mo;
+    cout<<"add: "<< add(a)<<endl;
+    cout<<"sub: "<< sub(s)<<endl;
+    cout<<"mul: "<< mul(m)<<endl;
+    cout<<"div: "<<divi(d)<<endl;
+    cout<<"mod: "<<modu(mo)<<endl;
+    return 0;
+}
+
+Output:
+add: 4
+sub: 7
+mul: 2
+div: 2
+mod: 0
